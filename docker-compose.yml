@@ -1,0 +1,47 @@
+services:
+
+  order-service:
+    build: .
+    env_file: .env
+    ports:
+      - "5001:5001"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+
+  mysql:
+    image: mysql:8.4
+
+    container_name: order-mysql
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@Order2026
+      MYSQL_DATABASE: order_db
+      MYSQL_USER: order_user
+      MYSQL_PASSWORD: Order@Dev2026
+
+    ports:
+      - "3309:3306"
+
+    volumes:
+      - order-mysql-data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+    networks:
+      - ecommerce-network
+
+volumes:
+  order-mysql-data:
+
+networks:
+  ecommerce-network:
+    external: true
