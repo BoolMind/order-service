@@ -11,7 +11,7 @@
     "prepare:deps": "bash scripts/prepare-deps.sh"
   },
   "dependencies": {
-    "@ecommerce/common": "file:../common/ecommerce-common-1.1.1.tgz",
+    "@ecommerce/common": "file:../common/ecommerce-common-1.2.0.tgz",
     "@ecommerce/contracts": "file:../ecommerce-contracts/ecommerce-contracts-1.1.1.tgz",
     "@grpc/grpc-js": "^1.14.3",
     "@grpc/proto-loader": "^0.8.0",
